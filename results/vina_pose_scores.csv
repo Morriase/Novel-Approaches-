@@ -1,0 +1,37 @@
+file_path,mode_index,affinity_kcal_mol,rmsd_lb,rmsd_ub
+tests/Docking scores/curcumin-mmp8.pdbqt,1,-7.7,0.0,0.0
+tests/Docking scores/curcumin-mmp8.pdbqt,2,-7.7,0.38,11.427
+tests/Docking scores/curcumin-mmp8.pdbqt,3,-7.7,18.494,21.336
+tests/Docking scores/curcumin-mmp8.pdbqt,4,-7.5,20.043,22.81
+tests/Docking scores/curcumin-mmp8.pdbqt,5,-7.5,19.5,21.938
+tests/Docking scores/curcumin-mmp8.pdbqt,6,-7.5,3.16,10.013
+tests/Docking scores/curcumin-mmp8.pdbqt,7,-7.4,19.303,21.301
+tests/Docking scores/curcumin-mmp8.pdbqt,8,-7.4,3.463,5.222
+tests/Docking scores/curcumin-mmp8.pdbqt,9,-7.3,19.834,21.938
+tests/Docking scores/propranolol.pdbqt,1,-7.6,0.0,0.0
+tests/Docking scores/propranolol.pdbqt,2,-7.2,3.062,5.075
+tests/Docking scores/propranolol.pdbqt,3,-7.0,29.612,31.937
+tests/Docking scores/propranolol.pdbqt,4,-6.9,4.876,7.464
+tests/Docking scores/propranolol.pdbqt,5,-6.9,3.704,5.619
+tests/Docking scores/propranolol.pdbqt,6,-6.9,4.123,6.164
+tests/Docking scores/propranolol.pdbqt,7,-6.8,4.983,7.665
+tests/Docking scores/propranolol.pdbqt,8,-6.7,76.29,79.007
+tests/Docking scores/propranolol.pdbqt,9,-6.7,78.711,81.347
+tests/Receptor binding analysis/curcumin.pdbqt,1,-7.7,0.0,0.0
+tests/Receptor binding analysis/curcumin.pdbqt,2,-7.7,0.38,11.427
+tests/Receptor binding analysis/curcumin.pdbqt,3,-7.7,18.494,21.336
+tests/Receptor binding analysis/curcumin.pdbqt,4,-7.5,20.043,22.81
+tests/Receptor binding analysis/curcumin.pdbqt,5,-7.5,19.5,21.938
+tests/Receptor binding analysis/curcumin.pdbqt,6,-7.5,3.16,10.013
+tests/Receptor binding analysis/curcumin.pdbqt,7,-7.4,19.303,21.301
+tests/Receptor binding analysis/curcumin.pdbqt,8,-7.4,3.463,5.222
+tests/Receptor binding analysis/curcumin.pdbqt,9,-7.3,19.834,21.938
+tests/Receptor binding analysis/propranolol.pdbqt,1,-7.6,0.0,0.0
+tests/Receptor binding analysis/propranolol.pdbqt,2,-7.2,3.062,5.075
+tests/Receptor binding analysis/propranolol.pdbqt,3,-7.0,29.612,31.937
+tests/Receptor binding analysis/propranolol.pdbqt,4,-6.9,4.876,7.464
+tests/Receptor binding analysis/propranolol.pdbqt,5,-6.9,3.704,5.619
+tests/Receptor binding analysis/propranolol.pdbqt,6,-6.9,4.123,6.164
+tests/Receptor binding analysis/propranolol.pdbqt,7,-6.8,4.983,7.665
+tests/Receptor binding analysis/propranolol.pdbqt,8,-6.7,76.29,79.007
+tests/Receptor binding analysis/propranolol.pdbqt,9,-6.7,78.711,81.347

@@ -1,0 +1,5 @@
+file_path,modes,best_affinity_kcal_mol,worst_affinity_kcal_mol,mean_affinity_kcal_mol,median_affinity_kcal_mol,score_spread_kcal_mol
+tests/Docking scores/curcumin-mmp8.pdbqt,9,-7.7,-7.3,-7.522,-7.5,0.4
+tests/Docking scores/propranolol.pdbqt,9,-7.6,-6.7,-6.967,-6.9,0.9
+tests/Receptor binding analysis/curcumin.pdbqt,9,-7.7,-7.3,-7.522,-7.5,0.4
+tests/Receptor binding analysis/propranolol.pdbqt,9,-7.6,-6.7,-6.967,-6.9,0.9

@@ -1,88 +1,163 @@
 # Novel Approaches for Chronic Wound Healing: Computational Phytochemical Discovery
 
-## Scientific Rationale
-Chronic wounds currently affect approximately one billion individuals worldwide. Conditions such as diabetic foot ulcers (DFUs), venous leg ulcers (VLUs), and pressure injuries impose a staggering economic cost and diminish quality of life. This project bridges the gap between ethnopharmacology and bioinformatics by establishing a high-fidelity computational pipeline to identify novel bioactive phytochemicals capable of modulating the hyper-inflammatory state of chronic wounds.
+## Current Project Status (April 2026)
+This repository now reflects a practical docking-focused workflow completed in the `tests/` workspace.
 
-A key pathophysiological feature of non-healing wounds is the dysregulation of Matrix Metalloproteinases (MMPs), specifically the overactivity of MMP-9 (which degrades the basement membrane) and the impairment of MMP-10 (essential for keratinocyte migration). This project focuses on discovering dual-function phytochemicals that can inhibit pathological MMP-9 activity while stabilizing pro-migratory MMP-10 or its upstream regulators like FGF7.
+Today we worked on two receptor-ligand systems:
+- `Curcumin` docked against human `MMP-8` (receptor source: `1A85`)
+- `Propranolol` docked against human `beta1 adrenergic receptor` (receptor source: `7BVQ`)
 
-## Computational Pipeline
+The project goal remains chronic-wound-targeted lead discovery, but the current data in this repo is centered on docking execution, pose collection, and interaction visualization.
 
-This repository implements a rigorous drug-discovery funnel integrating several state-of-the-art computational tools:
-
-1. **Ligand Selection & Geometrical Optimization (Avogadro):** 
-   - Chemical spaces sourced from **Phytochemdb**, **COCONUT**, and **ZINC15 Natural Products**.
-   - Energy minimization and geometry optimization using Universal Force Field (UFF) or MMFF94.
-   - Compliance checking with drug-likeness criteria (Lipinski’s Rule of Five, Ghose filter).
-   
-2. **Target Preparation (UCSF Chimera):**
-   - Import targets (e.g., MMP-9 catalytic domain, PDB ID: 1L6J).
-   - Solvents removal, protonation (physiological pH), and Gasteiger charge assignments.
-   - Inhibitor delineation to define the grid box coordinates.
-   
-3. **High-Throughput Docking (AutoDock Vina):**
-   - Utilization of Lamarckian Genetic Algorithm for predicting binding affinities.
-   - High exhaustiveness settings (16-32) to ensure robust global minimum energy pose identification.
-
-4. **Workflow Automation (BIOVIA Pipeline Pilot):**
-   - Standardization of batch SMILES strings.
-   - Post-processing filters, protein-ligand interaction analysis, and bioactivity predictions via Random Forest models.
-
-## AI & Machine Learning Integration
-
-To shorten the gap between target identification and candidate optimization, this project integrates several AI/ML methodologies:
-- **AlphaFold 3:** High-accuracy protein structure prediction for unresolved targets and protein-protein interactions.
-- **Generative AI (DeepChem):** Design of bio-isosteres to optimize drug-like properties using Generative Adversarial Networks (GANs) and Reinforcement Learning (RL).
-- **Explainable AI (XAI) & Network Pharmacology (SwissTargetPrediction/STITCH):** Ensuring mechanistic transparency and identifying polypharmacological potential.
-
-## Project Structure
-
-The repository is modular and follows the best practices of open science (FAIR principles):
+## What Is In The Repository Right Now
 
 ```text
-├── data/                  # Filtered phytochemical libraries and target PDBQT files
-├── notebooks/             # Jupyter Notebooks for analysis
-│   ├── Part_1_Data_Acquisition.ipynb
-│   ├── Part_2_Docking_Results.ipynb
-│   └── Part_3_AI_Modeling.ipynb
-├── results/               # Docking scores, XAI outputs, and interaction plots
-├── visuals/               # High-resolution renders (ChimeraX/PyMOL) of active site interactions
-├── environment.yml        # Conda environment configuration
-├── requirements.txt       # Python dependencies
-└── README.md              # Project documentation
+.
+├── README.md
+├── Research materials/
+├── Resources/
+│   ├── Computational Wound Healing Phytochemical Research Strategy.epub
+│   └── Computational Wound Healing Phytochemical Research Strategy.md
+├── tests/
+│   ├── docking complex/
+│   │   ├── curcumin-mmp8-visual.png
+│   │   └── prop-beta1-visual.png
+│   ├── Docking scores/
+│   │   ├── curcumin-mmp8.pdbqt
+│   │   └── propranolol.pdbqt
+│   ├── hits/
+│   │   ├── curcumin.sdf
+│   │   ├── propranolol.sdf
+│   │   └── tannic-acid-2D.sdf
+│   ├── hits opt/
+│   │   ├── curcumin-opt.acesin
+│   │   ├── curcumin-opt.mol2
+│   │   └── propranolol.mol2
+│   ├── Receptor binding analysis/
+│   │   ├── curcumin.conf
+│   │   ├── curcumin.ligand.pdbqt
+│   │   ├── curcumin.pdbqt
+│   │   ├── curcumin.receptor.pdbqt
+│   │   ├── propranolol.conf
+│   │   ├── propranolol.ligand.pdbqt
+│   │   ├── propranolol.pdbqt
+│   │   └── propranolol.receptor.pdbqt
+│   └── receptors/
+│       ├── beta1_adreno.ent
+│       └── mmp-8.ent
+└── Vina/
 ```
 
-## Getting Started
+## Docking Score Analysis (from `tests/Docking scores`)
 
-### Prerequisites
+AutoDock Vina outputs were parsed from:
+- `tests/Docking scores/curcumin-mmp8.pdbqt`
+- `tests/Docking scores/propranolol.pdbqt`
 
-Ensure you have the following software installed:
-- [UCSF Chimera](https://www.cgl.ucsf.edu/chimera/)
-- [AutoDock Vina](https://vina.scripps.edu/)
-- [Avogadro](https://avogadro.cc/)
-- [Conda](https://docs.conda.io/en/latest/) (for managing Python dependencies)
+### 1) Curcumin vs MMP-8
+Pose energies (kcal/mol):
+- -7.7
+- -7.7
+- -7.7
+- -7.5
+- -7.5
+- -7.5
+- -7.4
+- -7.4
+- -7.3
 
-### Installation
+Summary:
+- Best affinity: `-7.7 kcal/mol`
+- Worst reported pose: `-7.3 kcal/mol`
+- Tight score spread (~0.4 kcal/mol across top 9 poses), suggesting consistent binding modes.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/chronic-wound-phytochemicals.git
-   cd chronic-wound-phytochemicals
-   ```
+### 2) Propranolol vs beta1-adrenergic receptor
+Pose energies (kcal/mol):
+- -7.6
+- -7.2
+- -7.0
+- -6.9
+- -6.9
+- -6.9
+- -6.8
+- -6.7
+- -6.7
 
-2. Create and activate the Conda environment:
-   ```bash
-   conda env create -f environment.yml
-   conda activate wound-healing-env
-   ```
-   *Alternatively, using pip:*
-   ```bash
-   pip install -r requirements.txt
-   ```
+Summary:
+- Best affinity: `-7.6 kcal/mol`
+- Worst reported pose: `-6.7 kcal/mol`
+- Wider spread (~0.9 kcal/mol), indicating more conformational variability than curcumin in this run.
 
-## Reproducibility and Open Science
-In alignment with global bioinformatics standards, this project emphasizes reproducibility. All analysis steps are documented as vignettes within the Jupyter notebooks. Expected future milestones include containerizing the workflow via Docker and publishing the dataset to Zenodo or Figshare for DOI citation.
+### Quick comparison
+- Curcumin shows the most favorable single score in this dataset (`-7.7` vs `-7.6 kcal/mol`).
+- Curcumin also shows tighter clustering across modes.
+- These are docking estimates only; they are not proof of biological efficacy.
 
-## Geographic & Strategic Alignment
-This structure aligns heavily with the strategic research priorities of key international innovation hubs:
-- **Scandinavia:** Modulating non-coding RNAs and integrating marine bioprospecting (blue biotechnology).
-- **US/UK/Australia:** Large-scale integration utilizing PubChem, ChEMBL, and rigorous adoption of FAIR data principles.
+## Docking Run Settings Used
+
+From config files in `tests/Receptor binding analysis/`:
+
+### Curcumin run (`curcumin.conf`)
+- center_x = 17.60
+- center_y = 58.36
+- center_z = 51.86
+- size_x = 30.38
+- size_y = 35.22
+- size_z = 33.92
+- energy_range = 3
+- exhaustiveness = 8
+- num_modes = 9
+
+### Propranolol run (`propranolol.conf`)
+- center_x = 28.09
+- center_y = -39.12
+- center_z = 40.13
+- size_x = 58.50
+- size_y = 64.66
+- size_z = 170.76
+- energy_range = 3
+- exhaustiveness = 8
+- num_modes = 9
+
+## Receptor Metadata Confirmed
+- `tests/receptors/mmp-8.ent`: human MMP-8 structure (`PDB: 1A85`, X-ray, 2.00 A)
+- `tests/receptors/beta1_adreno.ent`: human beta1-adrenergic receptor chimera (`PDB: 7BVQ`, X-ray, 2.50 A)
+
+## Visual Interaction Outputs
+
+Generated images in `tests/docking complex/`:
+- `curcumin-mmp8-visual.png`
+- `prop-beta1-visual.png`
+
+![Curcumin-MMP8 docking visualization](tests/docking%20complex/curcumin-mmp8-visual.png)
+![Propranolol-beta1 docking visualization](tests/docking%20complex/prop-beta1-visual.png)
+
+From the provided 2D interaction diagrams:
+- Curcumin-MMP8 shows hydrogen-bonding and aromatic contacts (including interactions around residues such as TYR A:227, ASN A:226, PHE A:192, and nearby van der Waals contacts).
+- Propranolol-beta1 shows hydrogen-bonding and aromatic/hydrophobic contacts (including residues such as ASP B:1138, TRP B:1337, PHE B:1218, PHE B:1340, and PHE B:1341).
+
+These visuals support the docking score outputs by showing plausible binding-contact networks for both complexes.
+
+## Notes On Other Readable Content
+- `Resources/Computational Wound Healing Phytochemical Research Strategy.md` contains the broader strategic framework and literature-style background.
+- Current executable data assets are concentrated in `tests/` (ligands, optimized structures, receptors, Vina inputs, and docking outputs).
+
+## Automated Score Extraction
+
+A parser script has been added to make docking score reporting reproducible:
+- Script: `scripts/parse_vina_scores.py`
+- Run command: `python scripts/parse_vina_scores.py`
+
+Generated outputs:
+- `results/vina_score_summary.csv` (per-file summary stats)
+- `results/vina_pose_scores.csv` (one row per docking pose)
+
+Current run detected 4 files containing Vina score records (including mirrored result files in `tests/Docking scores/` and `tests/Receptor binding analysis/`).
+
+## Next Technical Steps
+1. Add optional deduplication/labeling in the parser so mirrored outputs can be grouped as primary vs backup result files.
+2. Standardize result folders (for example: `results/scores`, `results/figures`, `results/interactions`) to align with manuscript-ready reporting.
+3. Add ADMET and target selectivity filtering for current hits (curcumin, propranolol, tannic acid candidates).
+
+## Disclaimer
+This repository contains in silico docking outputs for research and learning purposes. Docking scores are hypothesis-generating and must be validated through wet-lab assays and pharmacological testing.

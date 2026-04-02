@@ -72,8 +72,13 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Parse Vina results from PDBQT files")
     parser.add_argument(
         "--input-glob",
+        default="results/docking/poses/**/*.pdbqt",
+        help="Primary glob pattern for PDBQT files (default: results/docking/poses/**/*.pdbqt)",
+    )
+    parser.add_argument(
+        "--legacy-input-glob",
         default="tests/**/*.pdbqt",
-        help="Glob pattern for PDBQT files (default: tests/**/*.pdbqt)",
+        help="Fallback glob pattern used only when primary glob finds no files",
     )
     parser.add_argument(
         "--summary-out",
@@ -99,6 +104,10 @@ def main() -> int:
 
     base_dir = Path(args.base_dir).resolve()
     input_files = sorted(base_dir.glob(args.input_glob))
+    selected_glob = args.input_glob
+    if not input_files:
+        input_files = sorted(base_dir.glob(args.legacy_input_glob))
+        selected_glob = args.legacy_input_glob
 
     summary_rows: list[dict[str, object]] = []
     pose_rows: list[dict[str, object]] = []
@@ -140,6 +149,7 @@ def main() -> int:
     write_summary_csv(summary_out, summary_rows)
     write_pose_csv(poses_out, pose_rows)
 
+    print(f"Input glob used: {selected_glob}")
     print(f"Parsed files with Vina results: {len(summary_rows)}")
     print(f"Summary CSV: {summary_out}")
     print(f"Pose CSV: {poses_out}")
